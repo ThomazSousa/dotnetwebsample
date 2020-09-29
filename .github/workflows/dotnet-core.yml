@@ -1,11 +1,8 @@
 name: .NET Core
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-
+  workflow_dispatch:
+  
 jobs:
   build:
 
@@ -28,3 +25,6 @@ jobs:
 
     - name: Publish
       run: dotnet publish -c Release -o out
+    
+    - name: Dir
+      run: ls ${{ github.workspace }} 
