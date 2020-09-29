@@ -35,6 +35,6 @@ jobs:
     - name: 'Deploy to Azure Web App'
       uses: azure/webapps-deploy@v2
       with:
-        app-name: 'octobersample'
-        publish-profile: ${{ secrets.azureWebAppPublishProfile }}
+        app-name: 'octobersample2'
+        publish-profile: ${{ secrets.azureWebAppPublishProfile2 }}
         package: ${{ github.workspace }}/out
