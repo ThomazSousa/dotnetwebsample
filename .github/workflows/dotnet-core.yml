@@ -24,11 +24,11 @@ jobs:
       run: dotnet test --no-restore --verbosity normal
 
     - name: Publish
-      run: dotnet publish -c Release -o out
+      run: dotnet publish -c Release -o '${{ github.workspace }}/out'
     
     - name: 'Deploy to Azure Web App'
       uses: azure/webapps-deploy@v2
       with:
         app-name: 'octobersample'
         publish-profile: ${{ secrets.azureWebAppPublishProfile }}
-        package: ./out
+        package: ${{ github.workspace }}/out
