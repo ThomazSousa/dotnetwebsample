@@ -26,6 +26,12 @@ jobs:
     - name: Publish
       run: dotnet publish -c Release -o '${{ github.workspace }}/out'
     
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v1
+      with:
+        name: artifact
+        path: ${{ github.workspace }}/out
+    
     - name: 'Deploy to Azure Web App'
       uses: azure/webapps-deploy@v2
       with:
