@@ -26,9 +26,6 @@ jobs:
     - name: Publish
       run: dotnet publish -c Release -o out
     
-    - name: Dir
-      run: ls ${{ github.workspace }} 
-
     - name: 'Deploy to Azure Web App'
       uses: azure/webapps-deploy@v2
       with:
