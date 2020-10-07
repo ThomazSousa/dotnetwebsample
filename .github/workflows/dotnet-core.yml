@@ -32,9 +32,8 @@ jobs:
         name: artifact
         path: ${{ github.workspace }}/out
     
-    - name: 'Deploy to Azure Web App'
-      uses: azure/webapps-deploy@v2
+    - uses: Azure/pipelines@v1
       with:
-        app-name: 'octobersample2'
-        publish-profile: ${{ secrets.azureWebAppPublishProfile2 }}
-        package: ${{ github.workspace }}/out
+        azure-devops-project-url: 'https://dev.azure.com/demoserievideo1/ExpoETEP2019'
+        azure-pipeline-name: 'deploywebappapim' # name of the Azure pipeline to be triggered
+        azure-devops-token: '${{ secrets.AZURE_DEVOPS_TOKEN }}'
