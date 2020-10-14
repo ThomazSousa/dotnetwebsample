@@ -22,4 +22,4 @@ jobs:
       - name: ZAP Scan
         uses: zaproxy/action-baseline@v0.4.0
         with:
-          target: 'http://portal.sonda.com.br/'
+          target: 'https://www.uol.com.br/'
