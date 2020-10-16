@@ -27,16 +27,20 @@ jobs:
       
     - name: Publish
       run: dotnet publish -c Release -o '${{ github.workspace }}/out'
+    
+    - uses: Azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+  
+    - uses: Azure/get-keyvault-secrets@v1.0
+      with:
+        keyvault: "tempvaultarruda"
+        secrets: 'connectionstring'
+      id: myGetSecretAction
 
     - uses: microsoft/variable-substitution@v1 
       with:
         files: '${{ github.workspace }}/out/appsettings.json'
       env:
-        ConnectionStrings.myDb1: "ValorExemplo"
+        ConnectionStrings.myDb1: ${{ steps.myGetSecretAction.outputs.connectionstring }}
   
-    - name: 'Deploy to Azure Web App'
-      uses: azure/webapps-deploy@v2
-      with:
-        app-name: 'octobersample2'
-        publish-profile: ${{ secrets.azureWebAppPublishProfile }}
-        package: ${{ github.workspace }}/out
