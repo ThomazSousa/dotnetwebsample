@@ -28,7 +28,7 @@ jobs:
       
       - name: Install SonarCloud scanner
         if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
-        shell: pwsh
+        shell: pwsh # mudado para pwsh inves de shell
         run: |
           New-Item -Path .\.sonar\scanner -ItemType Directory
           dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
@@ -37,7 +37,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        shell: pwsh
+        shell: pwsh # mudado para pwsh inves de shell
         run: |
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"julioarruda_dotnetwebsample" /o:"julioarruda" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
           dotnet build --configuration Release
